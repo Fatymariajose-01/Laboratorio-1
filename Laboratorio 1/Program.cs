@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace CompraProductos
 {
     class Program
@@ -34,14 +33,14 @@ namespace CompraProductos
                 Console.Write("Introduce el nombre del producto (o 'FIN' para terminar): ");
                 string nombreProducto = Console.ReadLine();
 
-                if (nombreProducto.ToLower() == "FIN")
+                if (nombreProducto == "FIN")
                 {
                     continuar = false;
                     break;
                 }
 
                
-                Console.Write("Introduce el precio del producto en centavos: ");
+                Console.Write("Introduce el precio del producto: ");
                 string precioProductoStr = Console.ReadLine();
 
                
@@ -70,6 +69,3 @@ namespace CompraProductos
         }
     }
 }
-
-
-
