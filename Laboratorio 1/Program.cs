@@ -31,10 +31,10 @@ namespace CompraProductos
             while (continuar)
             {
                
-                Console.Write("Introduce el nombre del producto (o 'salir' para terminar): ");
+                Console.Write("Introduce el nombre del producto (o 'FIN' para terminar): ");
                 string nombreProducto = Console.ReadLine();
 
-                if (nombreProducto.ToLower() == "salir")
+                if (nombreProducto.ToLower() == "FIN")
                 {
                     continuar = false;
                     break;
@@ -59,8 +59,17 @@ namespace CompraProductos
 
             return (totalProductos, totalAcumulado);
         }
-
-        
-
+        static double CalcularTotalConDescuento(int totalAcumulado, int umbralDescuento, double descuento)
+        {
+            double total = totalAcumulado / 100.0; 
+            if (totalAcumulado > umbralDescuento)
+            {
+                total -= total * descuento;
+            }
+            return total;
+        }
+    }
 }
+
+
 
