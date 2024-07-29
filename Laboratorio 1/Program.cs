@@ -1,36 +1,25 @@
-﻿namespace SolicitarProducto
+﻿using System;
+
+namespace CompraProductos
 {
     class Program
     {
-   
         static void Main(string[] args)
         {
-            SolicitarDatosProducto();
-        }
-        static void MostrarMenu()
-        {
-            Console.WriteLine("...Productos...");
-            Console.WriteLine("1. Pelota...Q.80.000");
-            Console.WriteLine("2. Carrito...Q.20.00");
-            Console.WriteLine("3. Peluche...Q.15.00");
-        }
-        static void SolicitarDatosProducto()
-        {
-
-            Console.Write("Introduzaca el nombre del producto: ");
-            int nombreProducto = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Introduzca el precio del producto: ");
-            int precioProducto = Convert.ToInt32(Console.ReadLine());
-
-
-            Console.WriteLine($"Nombre del producto: {nombreProducto}");
-            Console.WriteLine($"Precio del producto: {precioProducto}");
-        }
-        static void AcumularPrecio()
-        {
             
-        }
+            int totalProductos = 0;
+            int totalAcumulado = 0;
+            int umbralDescuento = 10000;
+            double descuento = 0.1;
+          
+            (totalProductos, totalAcumulado) = SolicitarProductos();
 
-    }
-}
+         
+            double totalConDescuento = CalcularTotalConDescuento(totalAcumulado, umbralDescuento, descuento);
+
+          
+            Console.WriteLine($"Total de productos ingresados: {totalProductos}");
+            Console.WriteLine($"Total de la compra: Q.{totalAcumulado / 100}.{totalAcumulado % 100:D2}");
+            Console.WriteLine($"Total con descuento: Q.{totalConDescuento / 100}.{totalConDescuento % 100:D2}");
+        }
+       
