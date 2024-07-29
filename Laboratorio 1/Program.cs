@@ -18,7 +18,7 @@ namespace CompraProductos
 
           
             Console.WriteLine($"Total de productos ingresados: {totalProductos}");
-            Console.WriteLine($"Total de la compra: Q.{totalAcumulado / 100}.{totalAcumulado % 100:D2}");
+            Console.WriteLine($"Total de la compra: Q.{totalAcumulado}.{totalAcumulado :D2}");
             Console.WriteLine($"Total con descuento: Q.{totalConDescuento / 100}.{totalConDescuento % 100:D2}");
         }
         static (int, int) SolicitarProductos()
@@ -26,10 +26,13 @@ namespace CompraProductos
             int totalProductos = 0;
             int totalAcumulado = 0;
             bool continuar = true;
+          
 
             while (continuar)
             {
-               
+                try
+                {
+
                 Console.Write("Introduce el nombre del producto (o 'FIN' para terminar): ");
                 string nombreProducto = Console.ReadLine();
 
@@ -47,20 +50,29 @@ namespace CompraProductos
                 int precioProducto;
                 while (!int.TryParse(precioProductoStr, out precioProducto) || precioProducto < 0)
                 {
-                    Console.Write("Precio no válido. Introduce el precio del producto en centavos (número entero positivo): ");
+                    Console.Write("Precio no válido. Introduce el precio del producto (número entero positivo): ");
                     precioProductoStr = Console.ReadLine();
                 }
 
                 
                 totalAcumulado += precioProducto;
                 totalProductos++;
+                }
+                catch(FormatException ex)
+                {
+                    Console.WriteLine("Error en el formato.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Algo salió mal vuelve a intentarlo.");
+                }
             }
 
             return (totalProductos, totalAcumulado);
         }
         static double CalcularTotalConDescuento(int totalAcumulado, int umbralDescuento, double descuento)
         {
-            double total = totalAcumulado / 100.0; 
+            double total = totalAcumulado; 
             if (totalAcumulado > umbralDescuento)
             {
                 total -= total * descuento;
@@ -68,4 +80,4 @@ namespace CompraProductos
             return total;
         }
     }
-}
+    }
