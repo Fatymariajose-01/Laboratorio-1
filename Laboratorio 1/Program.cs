@@ -18,7 +18,7 @@ namespace CompraProductos
 
           
             Console.WriteLine($"Total de productos ingresados: {totalProductos}");
-            Console.WriteLine($"Total de la compra: Q.{totalAcumulado}.{totalAcumulado :D2}");
+            Console.WriteLine($"Total de la compra: Q.{totalAcumulado}");
             Console.WriteLine($"Total con descuento: Q.{totalConDescuento / 100}.{totalConDescuento % 100:D2}");
         }
         static (int, int) SolicitarProductos()
@@ -69,6 +69,7 @@ namespace CompraProductos
             }
 
             return (totalProductos, totalAcumulado);
+
         }
         static double CalcularTotalConDescuento(int totalAcumulado, int umbralDescuento, double descuento)
         {
